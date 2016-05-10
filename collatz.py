@@ -1,18 +1,33 @@
 done = False
 
+# Tutorial prints.
 print("")
 print("- - - - - - - - - - -")
 print("COLLATZ CONJECTURE")
 print("- - - - - - - - - - -")
 print("")
 print("Enter a positive integer to get its Collatz path,")
-print("or press q to quit.")
+print("or enter q to quit.")
 
+# Keep the tool looping until user quits.
 while done == False:
-    num = raw_input("->  ")
-    if type(num) is int:
-        
-    elif type(num) is str and num == "q":
-        done = True
-    else:
-        print("Please enter a positive integer.")
+    rawNum = raw_input("->  ")
+    try:
+        n = int(rawNum)
+        print(n)
+        while (n != 1):
+            if n % 2 == 0:
+                n = n / 2
+            else:
+                n = (3 * n) + 1
+            print(n)
+
+    # Catch non-string input.
+    except ValueError as e:
+        # User quits
+        if rawNum == "q":
+            print("Quitting...")
+            done = True
+        # User enters invalid input
+        else:
+            print("Please enter a positive integer, or enter q to quit.")
