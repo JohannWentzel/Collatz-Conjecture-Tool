@@ -1,4 +1,5 @@
 done = False
+errorMsg = "Please enter a positive integer, or q to quit."
 
 # Tutorial prints.
 print("")
@@ -14,13 +15,16 @@ while done == False:
     rawNum = raw_input("->  ")
     try:
         n = int(rawNum)
-        print(n)
-        while (n != 1):
-            if n % 2 == 0:
-                n = n / 2
-            else:
-                n = (3 * n) + 1
+        if n <= 0:
+            print(errorMsg)
+        else:
             print(n)
+            while (n != 1):
+                if n % 2 == 0:
+                    n = n / 2
+                else:
+                    n = (3 * n) + 1
+                print(n)
 
     # Catch non-string input.
     except ValueError as e:
@@ -30,4 +34,4 @@ while done == False:
             done = True
         # User enters invalid input
         else:
-            print("Please enter a positive integer, or enter q to quit.")
+            print(errorMsg)
